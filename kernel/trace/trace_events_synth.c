@@ -752,6 +752,7 @@ static struct trace_event_fields synth_event_fields_array[] = {
 static int synth_event_reg(struct trace_event_call *call,
 		    enum trace_reg type, void *data)
 {
+	int ret;
 	struct synth_event *event = container_of(call, struct synth_event, call);
 
 	switch (type) {
@@ -766,7 +767,7 @@ static int synth_event_reg(struct trace_event_call *call,
 		break;
 	}
 
-	int ret = trace_event_reg(call, type, data);
+	ret = trace_event_reg(call, type, data);
 
 	switch (type) {
 #ifdef CONFIG_PERF_EVENTS
